@@ -7,10 +7,30 @@
 })(jQuery);
 
 
-$(document).on('click', function(){
-    document.getElementById("my_audio").play();
-    console.log('Kalyanathinu varane');
+// Function to play the audio
+// Select the audio element
+const audio = document.getElementById("my_audio");
+
+// Function to play and unmute the audio
+function unmuteAndPlay() {
+    audio.muted = false; // Unmute the audio
+    audio.play()
+        .then(() => console.log("Audio started playing."))
+        .catch(err => console.log("Error playing audio:", err));
+}
+
+// Play audio on user interaction (click anywhere on the page)
+document.addEventListener("click", function () {
+    unmuteAndPlay();
 });
+
+// Automatically unmute and play audio after 5 seconds
+setTimeout(function () {
+    unmuteAndPlay();
+}, 5000);
+
+
+
 
 // Set the date we're counting down to
 var countDownDate = new Date("December 02, 2024 12:30:00").getTime();
